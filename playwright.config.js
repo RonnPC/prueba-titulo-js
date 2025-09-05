@@ -1,18 +1,25 @@
-/** @type  {import('@playwright/test').PlaywrightTest.Config} */
-
+/** @type {import('@playwright/test').PlaywrightTestConfig} */
 const config = {
-    use:{
-        screenshot: 'only-on-failure',
-        trace: 'retain-on-failure'
+  use: {
+    screenshot: "only-on-failure",
+    trace: "retain-on-failure",
+  },
+  projects: [
+    {
+      name: "Chromium", use: { browserName: "chromium" },
     },
-    projects: [
-        { name: 'Chromium', use: {browserName: "chromium"}},
-    ],
-    testDir: "tests",
-    timeout: 3000,
-    expect: {
-        timeout: 5000,
-    },     
+    {
+      name: "Chrome", use: { browserName: "chromium", channel: "chrome" }, // Canal Chrome
+    },
+    {
+      name: "Edge", use: { browserName: "chromium", channel: "msedge" }, // Canal Edge
+    },
+  ],
+  testDir: "tests",
+  timeout: 10000,
+  expect: {
+    timeout: 5000,
+  },
 };
 
-module.exports = config
+module.exports = config;
